@@ -19,7 +19,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 
@@ -27,7 +26,6 @@ public class NewBlog extends AppCompatActivity {
     private Button button,button2;
     private EditText editText,editText2;
     private TextView textView;
-    private FloatingActionButton fab;
 
     private ImageView imageView;
     int SELECT_IMAGE_CODE=1;
@@ -63,8 +61,8 @@ public class NewBlog extends AppCompatActivity {
 
     }
 
-    private void processinsert(String title, String desc, String imgbyte ) {
-        String res= new DBHelper(this).insertuserdata(title,desc,imgbyte);
+    private void processinsert(String title, String desc, String txtv) {
+        String res= new DBHelper(this).insertuserdata(title,desc,txtv);
         editText.setText("");
         editText2.setText("");
         textView.setText("");
@@ -79,13 +77,7 @@ public class NewBlog extends AppCompatActivity {
         if(requestCode==1)
         {
             Uri uri= data.getData();
-            try {
-                InputStream inputStream = getContentResolver().openInputStream(uri);
-                byte[] inputData = getBytes(inputStream);
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
             String test=uri.toString();
 
 
@@ -95,20 +87,10 @@ public class NewBlog extends AppCompatActivity {
         }
     }
 
-    public byte[] getBytes(InputStream inputStream) throws IOException {
-        ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
-        int bufferSize = 1024;
-        byte[] buffer = new byte[bufferSize];
 
-        int len = 0;
-        while ((len = inputStream.read(buffer)) != -1) {
-            byteBuffer.write(buffer, 0, len);
-        }
-        return byteBuffer.toByteArray();
+    public static byte[] getBitmapAsByteArray(Bitmap bitmap) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
+        return outputStream.toByteArray();
     }
-//    public static byte[] getBitmapAsByteArray(Bitmap bitmap) {
-//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-//        bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
-//        return outputStream.toByteArray();
-//    }
 }

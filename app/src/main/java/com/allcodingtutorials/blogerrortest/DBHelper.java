@@ -13,7 +13,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase DB) {
-        DB.execSQL("create Table Userdetails(name TEXT primary key, title TEXT, description TEXT, image blob)");
+        DB.execSQL("create Table Userdetails(name TEXT primary key, title TEXT, description TEXT, picture TEXT)");
     }
     @Override
     public void onUpgrade(SQLiteDatabase DB, int i, int ii) {
@@ -36,7 +36,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         contentValues.put("title", title1);
         contentValues.put("description", description1);
-        contentValues.put("image",img);
+        contentValues.put("picture",img);
         long result=DB.insert("Userdetails", null, contentValues);
         if(result==-1){
             return "Filed";
