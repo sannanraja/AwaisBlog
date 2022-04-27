@@ -31,8 +31,9 @@ private OnNoteListener mOnNoteListener;
     @Override
     public void onBindViewHolder(@NonNull myviewHolder holder, int position) {
         holder.title.setText(dataholder.get(position).getTitle());
+        holder.datercvr.setText(dataholder.get(position).getDatercv());
         holder.description.setText(dataholder.get(position).getDescription());
-        holder.imgtext.setText(dataholder.get(position).getTxtv());
+
 
 
     }
@@ -43,14 +44,15 @@ private OnNoteListener mOnNoteListener;
     }
 
     class myviewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView title,description,imgtext;
+        TextView title,description,imgtext,datercvr;
         OnNoteListener onNoteListener;
         public myviewHolder(@NonNull View itemView,OnNoteListener onNoteListener) {
             super(itemView);
             title=itemView.findViewById(R.id.titleget);
             description=itemView.findViewById(R.id.descget);
 
-            imgtext=itemView.findViewById(R.id.imgget);
+
+            datercvr=itemView.findViewById(R.id.datetxtdisplay);
             this.onNoteListener=onNoteListener;
 itemView.setOnClickListener(this);
         }

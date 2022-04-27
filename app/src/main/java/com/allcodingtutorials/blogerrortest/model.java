@@ -5,6 +5,19 @@ import java.io.Serializable;
 public class model implements Serializable {
 
     private String title;
+    private String description;
+
+    private String datercv;
+
+    public model(String title,  String datercv,String description) {
+        this.title = title;
+        this.datercv = datercv;
+        this.description = description;
+
+
+    }
+
+
 
     public String getTitle() {
         return title;
@@ -22,20 +35,19 @@ public class model implements Serializable {
         this.description = description;
     }
 
-    private String description;
-    private String txtv;
 
-    public model(String title, String description, String txtv) {
-        this.title = title;
-        this.description = description;
-        this.txtv = txtv;
+
+    public String getDatercv() {
+        return datercv;
     }
 
-    public String getTxtv() {
-        return txtv;
+    public void setDatercv(String datercv) {
+        this.datercv = datercv;
     }
 
-    public void setTxtv(String txtv) {
-        this.txtv = txtv;
-    }
+
+
+
+
+
 }

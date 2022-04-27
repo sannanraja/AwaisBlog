@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.00" />
 
     <ImageView
-        android:id="@+id/nimg"
+        android:id="@+id/imageuserad"
         android:layout_width="112dp"
         android:layout_height="93dp"
         android:layout_marginTop="56dp"
@@ -35,7 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nblog" />
 
     <Button
-        android:id="@+id/buttontwo"
+        android:id="@+id/buttonaddpic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="139dp"
@@ -44,7 +44,7 @@
         app:layout_constraintBottom_toTopOf="@+id/nblog2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nimg" />
+        app:layout_constraintTop_toBottomOf="@+id/imageuserad" />
 
     <TextView
         android:id="@+id/nblog2"
@@ -54,14 +54,14 @@
         android:layout_marginBottom="8dp"
         android:text="Blog Title"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextone"
+        app:layout_constraintBottom_toTopOf="@+id/editTexttitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nimg" />
+        app:layout_constraintTop_toBottomOf="@+id/imageuserad" />
 
     <EditText
-        android:id="@+id/editTextone"
+        android:id="@+id/editTexttitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -84,14 +84,14 @@
         android:layout_marginBottom="19dp"
         android:text="Blog Description"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTexttwo"
+        app:layout_constraintBottom_toTopOf="@+id/editTextdesc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.408"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextone" />
+        app:layout_constraintTop_toBottomOf="@+id/editTexttitle" />
 
     <EditText
-        android:id="@+id/editTexttwo"
+        android:id="@+id/editTextdesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -99,14 +99,14 @@
 
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/buttonone"
+        app:layout_constraintBottom_toTopOf="@+id/buttonsubmit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textv3" />
 
     <Button
-        android:id="@+id/buttonone"
+        android:id="@+id/buttonsubmit"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -119,6 +119,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTexttwo" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextdesc" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

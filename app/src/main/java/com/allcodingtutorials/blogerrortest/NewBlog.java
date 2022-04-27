@@ -1,11 +1,9 @@
 package com.allcodingtutorials.blogerrortest;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -15,29 +13,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.net.URI;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class NewBlog extends AppCompatActivity {
-    private Button button,button2;
-    private EditText editText,editText2;
-    private TextView textView;
+    private Button buttonsubmit, buttonaddpic;
+    private EditText blogtitleedt, blogdescedx;
+    private TextView nblogone;
 
-    private ImageView imageView;
+    private ImageView imgageuseradd;
     int SELECT_IMAGE_CODE=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_blog);
-        button=findViewById(R.id.buttonone);
-        imageView=findViewById(R.id.nimg);
-        button2=findViewById(R.id.buttontwo);
+        buttonsubmit =findViewById(R.id.buttonsubmit);
+        imgageuseradd =findViewById(R.id.imageuserad);
+        buttonaddpic =findViewById(R.id.buttonaddpic);
 
-        button2.setOnClickListener(new View.OnClickListener() {
+        buttonaddpic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent();
@@ -46,26 +41,32 @@ public class NewBlog extends AppCompatActivity {
                startActivityForResult(Intent.createChooser(intent,"Title"),SELECT_IMAGE_CODE);
             }
         });
-        button.setOnClickListener(new View.OnClickListener() {
+        buttonsubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                editText=findViewById(R.id.editTextone);
-                editText2=findViewById(R.id.editTexttwo);
-                textView= findViewById(R.id.nblog2);
+                blogtitleedt =findViewById(R.id.editTexttitle);
+                blogdescedx =findViewById(R.id.editTextdesc);
+                nblogone = findViewById(R.id.nblog2);
 
-                processinsert(editText.getEditableText().toString(),editText2.getEditableText().toString(),textView.getText().toString());
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+                Date date = new Date();
+
+                String frmtdDate = dateFormat.format(date);
+
+                processinsert(blogtitleedt.getEditableText().toString(), blogdescedx.getEditableText().toString(),frmtdDate);
                 startActivity(new Intent(getApplicationContext(),fetchdata.class));
             }
         });
 
     }
 
-    private void processinsert(String title, String desc, String txtv) {
-        String res= new DBHelper(this).insertuserdata(title,desc,txtv);
-        editText.setText("");
-        editText2.setText("");
-        textView.setText("");
+    private void processinsert(String title, String desc, String datercv) {
+        String res= new DBHelper(this).insertuserdata(title,datercv,desc);
+        blogtitleedt.setText("");
+        blogdescedx.setText("");
+        nblogone.setText("");
         Toast.makeText(getApplicationContext(),res,Toast.LENGTH_SHORT).show();
 
 
@@ -81,8 +82,8 @@ public class NewBlog extends AppCompatActivity {
             String test=uri.toString();
 
 
-            imageView.setImageURI(uri);
-            button2.setText(test);
+            imgageuseradd.setImageURI(uri);
+            buttonaddpic.setText(test);
 
         }
     }

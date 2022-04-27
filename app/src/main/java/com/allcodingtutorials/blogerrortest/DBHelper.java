@@ -8,18 +8,33 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
+    static final  String TABLE_NAME="Userdetails";
+     static final   String COLUMN_DATE="created_at";
+     static final  String COLUMN_DESCRIPTION="description";
+     static final  String COLUMN_NAME="name";
+   static  final String DATABASE_TABLE="Userdetails";
+     static final String USER_ID="_ID";
+
+  //   static final String CREATE_DB_QUERY="CREATE TABLE "+DATABASE_TABLE +" ( " +USER_ID+ "INTEGER PRIMARY KEY AUTOINCREMENT, " +COLUMN_NAME +"TEXT NOT NULL, " +COLUMN_DESCRIPTION+ " TEXT NOT NULL);";
+    static final String CREATE_DB_QUERY="CREATE TABLE "+DATABASE_TABLE +" ( " +USER_ID+ "INTEGER PRIMARY KEY AUTOINCREMENT, " +COLUMN_NAME +"TEXT NOT NULL, " +COLUMN_DESCRIPTION +"TEXT NOT NULL, " +COLUMN_DATE+ " TEXT NOT NULL);";
+
+
+
     public DBHelper(Context context) {
         super(context, "Userdata.db", null, 1);
     }
     @Override
     public void onCreate(SQLiteDatabase DB) {
-        DB.execSQL("create Table Userdetails(name TEXT primary key, title TEXT, description TEXT, picture TEXT)");
+        DB.execSQL(CREATE_DB_QUERY);
+    //    DB.execSQL("CREATE TABLE " + TABLE_NAME + "(ID INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_NAME + " TEXT," + COLUMN_DATE + " CURRENT_TIMESTAMP," + COLUMN_DESCRIPTION + " TEXT)");
+
+
     }
     @Override
     public void onUpgrade(SQLiteDatabase DB, int i, int ii) {
         DB.execSQL("drop Table if exists Userdetails");
     }
-    public String insertuserdata(String title1, String description1, String img)
+    public String insertuserdata(String name, String date,String description)
     {
 
 
@@ -34,9 +49,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
 
-        contentValues.put("title", title1);
-        contentValues.put("description", description1);
-        contentValues.put("picture",img);
+        contentValues.put("name", name);
+        contentValues.put("created_at",date);
+        contentValues.put("description",description);
+
         long result=DB.insert("Userdetails", null, contentValues);
         if(result==-1){
             return "Filed";

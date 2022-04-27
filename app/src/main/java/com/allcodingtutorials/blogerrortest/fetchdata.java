@@ -1,5 +1,6 @@
 package com.allcodingtutorials.blogerrortest;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ public class fetchdata extends AppCompatActivity implements myadapter.OnNoteList
         Cursor cursor= new DBHelper(this).getdata();
         while (cursor.moveToNext())
         {
-            model obj= new model(cursor.getString(1),cursor.getString(2),cursor.getString(3));
+            @SuppressLint("Range") model obj= new model(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_NAME)),cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_DESCRIPTION)),cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_DATE)));
             dataholder.add(obj);
         }
         myadapter myadapter= new myadapter(dataholder,this);
